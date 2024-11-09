@@ -1,0 +1,116 @@
+:root {
+  --mobile-nav-width: 100px;
+  --aside-width: 70px;
+  --mine-shaft: rgba(34, 34, 34, 1);
+  --spring-wood: rgba(247, 246, 241, 1);
+}
+@media (max-width: 960px) {
+  :root {
+    --mobile-nav-width: 0px;
+  }
+}
+@media (max-width: 767px) {
+  :root {
+    --aside-width: 55px;
+  }
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+}
+
+body {
+  overflow: hidden;
+  background-color: var(--spring-wood);
+  color: var(--mine-shaft);
+}
+
+.body-wrapper {
+  height: 100%;
+  width: calc(100vw + var(--mobile-nav-width));
+  display: flex;
+  position: relative;
+  left: calc(-1 * var(--mobile-nav-width));
+}
+.body-wrapper nav {
+  height: 100%;
+  width: var(--mobile-nav-width);
+  overflow: hidden;
+}
+.body-wrapper main {
+  flex-grow: 1;
+  display: flex;
+}
+.body-wrapper main .page-content {
+  height: 100%;
+  flex-grow: 1;
+}
+
+aside {
+  width: var(--aside-width);
+  height: 100%;
+  border-right: 1px solid var(--mine-shaft);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+aside .logo .burger {
+  display: none;
+  padding: 1em 0;
+  border-bottom: 1px solid var(--mine-shaft);
+}
+aside .logo .burger span {
+  display: block;
+  background-color: var(--mine-shaft);
+  height: 2px;
+  width: 1.2em;
+  margin: 0.25em auto;
+}
+@media (max-width: 960px) {
+  aside .logo .burger {
+    display: block;
+  }
+}
+aside .logo img {
+  display: block;
+  width: 50%;
+  height: auto;
+  margin: 1.5em auto;
+}
+@media (max-width: 960px) {
+  aside .logo img {
+    margin: 1em auto;
+  }
+}
+aside .social a {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1;
+  border-top: 1px solid var(--mine-shaft);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+aside .social a svg {
+  width: 40%;
+  height: auto;
+  display: block;
+}
+aside .social a:hover {
+  background-color: var(--mine-shaft);
+}
+aside .social a:hover svg path {
+  fill: var(--spring-wood);
+}
+
+/*# sourceMappingURL=styles.css.map */

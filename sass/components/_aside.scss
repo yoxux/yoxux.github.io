@@ -1,0 +1,66 @@
+aside {
+  width: $aside-width;
+  height: 100%;
+  border-right: 1px solid $mine-shaft;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  .logo {
+    .burger {
+      display: none;
+      padding: 1em 0;
+      border-bottom: 1px solid $mine-shaft;
+
+      span {
+        display: block;
+        background-color: $mine-shaft;
+        height: 2px;
+        width: 1.2em;
+        margin: 0.25em auto;
+      }
+
+      @media (max-width: $tablet-breakpoint) {
+        display: block;
+      }
+    }
+
+    img {
+      display: block;
+      width: 50%;
+      height: auto;
+      margin: 1.5em auto;
+
+      @media (max-width: $tablet-breakpoint) {
+        margin: 1em auto;
+      }
+    }
+  }
+
+  .social {
+    a {
+      display: block;
+      width: 100%;
+      aspect-ratio: 1;
+      border-top: 1px solid $mine-shaft;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      svg {
+        width: 40%;
+        height: auto;
+        display: block;
+      }
+
+      &:hover {
+        background-color: $mine-shaft;
+
+        svg path {
+          fill: $spring-wood;
+        }
+      }
+    }
+  }
+}
