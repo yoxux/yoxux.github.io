@@ -18,6 +18,11 @@ body {
   overflow: hidden;
   background-color: $spring-wood;
   color: $mine-shaft;
+  font-family: $open-sans;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  font-variation-settings: "wdth" 100;
 }
 
 .body-wrapper {
@@ -26,11 +31,10 @@ body {
   display: flex;
   position: relative;
   left: calc(-1 * $mobile-nav-width);
+  transition: left 0.35s cubic-bezier(0.33, 1, 0.68, 1);
 
-  nav {
-    height: 100%;
-    width: $mobile-nav-width;
-    overflow: hidden;
+  &.nav-active {
+    left: 0;
   }
 
   main {
@@ -44,4 +48,5 @@ body {
   }
 }
 
+@import "components/navigation";
 @import "components/aside";

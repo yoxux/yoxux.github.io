@@ -2,14 +2,16 @@ $tablet-breakpoint: 960px;
 $mobile-breakpoint: 767px;
 
 :root {
-  --mobile-nav-width: 100px;
+  --mobile-nav-width: 0px;
   --aside-width: 70px;
 
   --mine-shaft: rgba(34, 34, 34, 1);
   --spring-wood: rgba(247, 246, 241, 1);
+  --white: rgba(255, 255, 255, 1);
+  --white-80: rgba(255, 255, 255, 0.8);
 
   @media (max-width: $tablet-breakpoint) {
-    --mobile-nav-width: 0px;
+    --mobile-nav-width: 200px;
   }
 
   @media (max-width: $mobile-breakpoint) {
@@ -22,3 +24,9 @@ $aside-width: var(--aside-width);
 
 $mine-shaft: var(--mine-shaft);
 $spring-wood: var(--spring-wood);
+$white: var(--white);
+$white-80: var(--white-80);
+
+$open-sans: "Open Sans", sans-serif;
+$poppins: "Poppins", sans-serif;
+$space-mono: "Space Mono", monospace;

@@ -10,14 +10,33 @@ aside {
     .burger {
       display: none;
       padding: 1em 0;
+      border: 0;
       border-bottom: 1px solid $mine-shaft;
+      width: 100%;
+      background-color: inherit;
+      outline: none;
+      cursor: pointer;
 
       span {
         display: block;
+        position: relative;
         background-color: $mine-shaft;
         height: 2px;
         width: 1.2em;
         margin: 0.25em auto;
+        transition: transform 0.1s;
+      }
+
+      &.active {
+        span:nth-child(1) {
+          transform: translateY(calc(0.25em + 2px)) rotate(-40deg);
+        }
+        span:nth-child(2) {
+          opacity: 0;
+        }
+        span:nth-child(3) {
+          transform: translateY(calc(-0.25em - 2px)) rotate(40deg);
+        }
       }
 
       @media (max-width: $tablet-breakpoint) {
@@ -25,11 +44,18 @@ aside {
       }
     }
 
-    img {
+    a {
       display: block;
-      width: 50%;
-      height: auto;
-      margin: 1.5em auto;
+      width: 100%;
+      aspect-ratio: 1;
+      margin: 1.5em 0;
+
+      img {
+        display: block;
+        width: 50%;
+        height: auto;
+        margin: 0 auto;
+      }
 
       @media (max-width: $tablet-breakpoint) {
         margin: 1em auto;
@@ -47,11 +73,16 @@ aside {
       display: flex;
       justify-content: center;
       align-items: center;
+      transition: background-color 0.2s;
 
       svg {
         width: 40%;
         height: auto;
         display: block;
+
+        path {
+          transition: fill 0.2s;
+        }
       }
 
       &:hover {

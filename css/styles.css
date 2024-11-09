@@ -1,12 +1,14 @@
 :root {
-  --mobile-nav-width: 100px;
+  --mobile-nav-width: 0px;
   --aside-width: 70px;
   --mine-shaft: rgba(34, 34, 34, 1);
   --spring-wood: rgba(247, 246, 241, 1);
+  --white: rgba(255, 255, 255, 1);
+  --white-80: rgba(255, 255, 255, 0.8);
 }
 @media (max-width: 960px) {
   :root {
-    --mobile-nav-width: 0px;
+    --mobile-nav-width: 200px;
   }
 }
 @media (max-width: 767px) {
@@ -33,6 +35,11 @@ body {
   overflow: hidden;
   background-color: var(--spring-wood);
   color: var(--mine-shaft);
+  font-family: "Open Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  font-variation-settings: "wdth" 100;
 }
 
 .body-wrapper {
@@ -41,11 +48,10 @@ body {
   display: flex;
   position: relative;
   left: calc(-1 * var(--mobile-nav-width));
+  transition: left 0.35s cubic-bezier(0.33, 1, 0.68, 1);
 }
-.body-wrapper nav {
-  height: 100%;
-  width: var(--mobile-nav-width);
-  overflow: hidden;
+.body-wrapper.nav-active {
+  left: 0;
 }
 .body-wrapper main {
   flex-grow: 1;
@@ -54,6 +60,34 @@ body {
 .body-wrapper main .page-content {
   height: 100%;
   flex-grow: 1;
+}
+
+nav {
+  display: none;
+  height: 100%;
+  width: var(--mobile-nav-width);
+  background-color: var(--mine-shaft);
+  color: var(--white-80);
+}
+nav a {
+  color: var(--white-80);
+  text-decoration: none;
+  text-transform: uppercase;
+  font-style: normal;
+  display: block;
+  font-size: 0.8em;
+  font-family: "Space Mono", monospace;
+  padding: 1.2em 1em;
+  border-bottom: 1px solid #333333;
+  transition: color 0.2s;
+}
+nav a:hover {
+  color: var(--white);
+}
+@media (max-width: 960px) {
+  nav {
+    display: block;
+  }
 }
 
 aside {
@@ -67,28 +101,50 @@ aside {
 aside .logo .burger {
   display: none;
   padding: 1em 0;
+  border: 0;
   border-bottom: 1px solid var(--mine-shaft);
+  width: 100%;
+  background-color: inherit;
+  outline: none;
+  cursor: pointer;
 }
 aside .logo .burger span {
   display: block;
+  position: relative;
   background-color: var(--mine-shaft);
   height: 2px;
   width: 1.2em;
   margin: 0.25em auto;
+  transition: transform 0.1s;
+}
+aside .logo .burger.active span:nth-child(1) {
+  transform: translateY(calc(0.25em + 2px)) rotate(-40deg);
+}
+aside .logo .burger.active span:nth-child(2) {
+  opacity: 0;
+}
+aside .logo .burger.active span:nth-child(3) {
+  transform: translateY(calc(-0.25em - 2px)) rotate(40deg);
 }
 @media (max-width: 960px) {
   aside .logo .burger {
     display: block;
   }
 }
-aside .logo img {
+aside .logo a {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1;
+  margin: 1.5em 0;
+}
+aside .logo a img {
   display: block;
   width: 50%;
   height: auto;
-  margin: 1.5em auto;
+  margin: 0 auto;
 }
 @media (max-width: 960px) {
-  aside .logo img {
+  aside .logo a {
     margin: 1em auto;
   }
 }
@@ -100,11 +156,15 @@ aside .social a {
   display: flex;
   justify-content: center;
   align-items: center;
+  transition: background-color 0.2s;
 }
 aside .social a svg {
   width: 40%;
   height: auto;
   display: block;
+}
+aside .social a svg path {
+  transition: fill 0.2s;
 }
 aside .social a:hover {
   background-color: var(--mine-shaft);
