@@ -2,18 +2,22 @@
   --mobile-nav-width: 0px;
   --aside-width: 70px;
   --mine-shaft: rgba(34, 34, 34, 1);
+  --mine-shaft-0: rgba(34, 34, 34, 0);
   --spring-wood: rgba(247, 246, 241, 1);
   --white: rgba(255, 255, 255, 1);
   --white-80: rgba(255, 255, 255, 0.8);
+  --container-padding: 70px;
 }
 @media (max-width: 960px) {
   :root {
     --mobile-nav-width: 200px;
+    --container-padding: 60px;
   }
 }
 @media (max-width: 767px) {
   :root {
     --aside-width: 55px;
+    --container-padding: 30px;
   }
 }
 
@@ -134,7 +138,6 @@ aside .logo .burger.active span:nth-child(3) {
 aside .logo a {
   display: block;
   width: 100%;
-  aspect-ratio: 1;
   margin: 1.5em 0;
 }
 aside .logo a img {
@@ -171,6 +174,101 @@ aside .social a:hover {
 }
 aside .social a:hover svg path {
   fill: var(--spring-wood);
+}
+
+.page-content {
+  display: flex;
+}
+.page-content .page {
+  flex-grow: 0;
+  width: var(--aside-width);
+  overflow: hidden;
+  border-left-width: 1px;
+  border-left-style: solid;
+  border-left-color: var(--mine-shaft);
+  cursor: pointer;
+  transition: flex-grow 0.6s cubic-bezier(0.65, 0, 0.35, 1), border-left-color 0s 0.5s;
+}
+.page-content .page.header {
+  width: 0;
+  border-left: 0;
+}
+.page-content .page.current {
+  flex-grow: 1;
+  cursor: default;
+}
+.page-content section.page:first-of-type {
+  border-left-color: var(--mine-shaft-0);
+}
+.page-content.header-active section.page:first-of-type {
+  border-left-color: var(--mine-shaft);
+  transition: flex-grow 0.6s cubic-bezier(0.65, 0, 0.35, 1), border-left-color 0s 0.1s;
+}
+.page-content .header {
+  position: relative;
+}
+.page-content .header .text {
+  position: absolute;
+  bottom: 6em;
+  left: var(--container-padding);
+}
+.page-content .header .text h1 {
+  text-transform: uppercase;
+  font-size: max(6.5vw, 3.75em);
+  margin: 0 0 0.35em 0;
+  line-height: 1;
+  letter-spacing: -0.1em;
+}
+@media (max-width: 767px) {
+  .page-content .header .text h1 {
+    font-size: max(2.5em, 6.5vw);
+  }
+}
+.page-content .header .text p {
+  font-family: "Space Mono", monospace;
+  font-size: 1.5em;
+  letter-spacing: -2px;
+}
+@media (max-width: 767px) {
+  .page-content .header .text p {
+    font-size: 1.2em;
+  }
+}
+.page-content .header .text p .who {
+  display: inline-block;
+  background: rgb(25, 230, 25);
+  padding: 0 5px;
+  height: 1.5em;
+  vertical-align: middle;
+}
+@media (max-width: 767px) {
+  .page-content .header .text p .who {
+    padding: 0 2px;
+  }
+}
+@media (max-width: 960px) {
+  .page-content .header {
+    height: 100%;
+  }
+}
+@media (max-width: 960px) {
+  .page-content {
+    display: block;
+    height: 100%;
+    overflow-x: hidden;
+    overflow-y: visible;
+    box-sizing: border-box;
+    width: calc(100vw - var(--aside-width));
+  }
+  .page-content .page {
+    width: 100%;
+    cursor: default;
+    border: 0;
+    transition: none;
+  }
+  .page-content .page.header {
+    width: 100%;
+  }
 }
 
 /*# sourceMappingURL=styles.css.map */
