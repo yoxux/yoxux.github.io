@@ -246,11 +246,21 @@ aside .social a:hover svg path {
   padding: 0 5px;
   height: 1.5em;
   vertical-align: middle;
+  position: relative;
 }
 @media (max-width: 767px) {
   .page-content .header .text p .who {
     padding: 0 2px;
   }
+}
+.page-content .header .text p .who::after {
+  content: "";
+  display: inline-block;
+  vertical-align: middle;
+  height: 70%;
+  width: 1px;
+  background-color: var(--mine-shaft);
+  transform: translateX(0.75ch);
 }
 @media (max-width: 960px) {
   .page-content .header {

@@ -84,8 +84,8 @@ function initHeaderTextAnimation() {
   };
   const INTERVALS = {
     normal: 120,
-    reverse: 50,
-    wait: 200,
+    reverse: 40,
+    wait: 600,
   };
 
   const list = ["sviluppatore web.", "amante del caffé.", "web designer."];
