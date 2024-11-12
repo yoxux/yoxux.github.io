@@ -61,9 +61,14 @@
         font-family: $space-mono;
         font-size: 1.5em;
         letter-spacing: -2px;
+        white-space: nowrap;
 
         @media (max-width: $mobile-breakpoint) {
           font-size: 1.2em;
+        }
+
+        @media (max-width: $small-breakpoint) {
+          font-size: 1em;
         }
 
         .who {
@@ -76,8 +81,6 @@
           @media (max-width: $mobile-breakpoint) {
             padding: 0 2px;
           }
-
-
         }
       }
     }

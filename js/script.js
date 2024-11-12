@@ -74,7 +74,7 @@ function initPageContentSwitch() {
 }
 
 /**
- *
+ * Text typing animation
  */
 function initHeaderTextAnimation() {
   const ANIMATION_STATUS = {

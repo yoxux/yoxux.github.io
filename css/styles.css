@@ -228,10 +228,16 @@ aside .social a:hover svg path {
   font-family: "Space Mono", monospace;
   font-size: 1.5em;
   letter-spacing: -2px;
+  white-space: nowrap;
 }
 @media (max-width: 767px) {
   .page-content .header .text p {
     font-size: 1.2em;
+  }
+}
+@media (max-width: 480px) {
+  .page-content .header .text p {
+    font-size: 1em;
   }
 }
 .page-content .header .text p .who {
