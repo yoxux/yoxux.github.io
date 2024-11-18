@@ -1,6 +1,15 @@
+/**
+ * @typedef {import("gsap")} gsap
+ * @typedef {import("jquery")} $
+ */
+
+gsap.registerPlugin(ScrollTrigger);
+
 const body = document.body;
 const select = (e) => document.querySelector(e);
 const selectAll = (e) => document.querySelectorAll(e);
+
+let aboutTweens = [];
 
 initScript();
 
@@ -11,6 +20,7 @@ function initScript() {
   initNavMenu();
   initPageContentSwitch();
   initHeaderTextAnimation();
+  initImageSlider();
 }
 
 /**
@@ -42,9 +52,12 @@ function initNavMenu() {
  * Enaible move one section to another in desktop
  */
 function initPageContentSwitch() {
+  let timer = null;
+
   function onResize() {
     $(".page-content .page").off();
     $("aside .logo a").off();
+    clearTweens(aboutTweens);
 
     if (window.innerWidth > 960) {
       $(".page-content .page").on("click", function (e) {
@@ -56,6 +69,13 @@ function initPageContentSwitch() {
         const oldPage = $(this).siblings(".current");
         $(oldPage).removeClass("current");
         $(this).addClass("current");
+        $(".content", this).scrollTop(0);
+
+        window.clearTimeout(timer);
+        timer = setTimeout(
+          initPagescripts.bind(this),
+          600 /* flex-grow transition time */
+        );
       });
 
       $("aside .logo a").on("click", function (e) {
@@ -71,6 +91,17 @@ function initPageContentSwitch() {
     onResize();
     $(window).resize(onResize);
   });
+}
+
+/**
+ * Initialize current specific scripts
+ */
+function initPagescripts() {
+  const content = $(".content", this);
+
+  if (content.hasClass("about-me")) {
+    initAboutGsapAnim();
+  }
 }
 
 /**
@@ -139,4 +170,94 @@ function initHeaderTextAnimation() {
 
     requestAnimationFrame(step);
   });
+}
+
+/**
+ * Image sliders button
+ * Structure:
+ * .image-slider
+ *   .controls
+ *     .back
+ *     .forward
+ *   .container
+ *     .image
+ */
+function initImageSlider() {
+  $(document).ready(function () {
+    $(".image-slider").each(function () {
+      const slider = $(this);
+      const length = parseInt(slider.attr("data-length"));
+
+      $(".controls .back", slider).click(function () {
+        let current = parseInt(slider.attr("data-current"));
+        if (current === 1) current = length + 1;
+
+        $(".container", slider).css("left", `${-100 * (current - 2)}%`);
+        slider.attr("data-current", current - 1);
+      });
+
+      $(".controls .forward", slider).click(function () {
+        let current = parseInt(slider.attr("data-current"));
+        if (current === length) current = 0;
+
+        $(".container", slider).css("left", `${-100 * current}%`);
+        slider.attr("data-current", current + 1);
+      });
+    });
+  });
+}
+
+/**
+ * Show skills progress on enter
+ * About me page
+ */
+function initAboutGsapAnim() {
+  if (aboutTweens.length) return;
+
+  const progresses = gsap.utils.toArray(".about-me .skill .progress");
+
+  aboutTweens.push(
+    gsap.to(progresses, {
+      width: (index, target, targets) => {
+        const percentage = parseInt($(target).attr("data-percent"));
+        return `${percentage}%`;
+      },
+      stagger: 0.1,
+      scrollTrigger: {
+        scroller: ".about-me",
+        trigger: ".about-me .skills .right",
+        start: "top 80%",
+        toggleActions: "restart none none none",
+      },
+    }),
+
+    gsap.to(".about-me .skills .right", {
+      y: -160,
+      scrollTrigger: {
+        scroller: ".about-me",
+        trigger: ".about-me .skills",
+        start: "top 80%",
+        scrub: 1,
+      },
+    }),
+
+    gsap.to(".about-me .skills .left", {
+      y: 50,
+      scrollTrigger: {
+        scroller: ".about-me",
+        trigger: ".about-me .skills",
+        start: "top 80%",
+        scrub: 0.6,
+      },
+    })
+  );
+}
+
+/**
+ * Kill all the tweens and clear the array
+ */
+function clearTweens(tweens) {
+  while (tweens.length > 0) {
+    tweens.pop().kill();
+  }
 }

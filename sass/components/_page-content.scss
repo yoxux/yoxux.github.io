@@ -21,6 +21,62 @@
     &.current {
       flex-grow: 1;
       cursor: default;
+
+      .sidebar .number {
+        transform: none !important;
+      }
+    }
+
+    .sidebar {
+      width: $aside-width;
+      height: 100%;
+      float: left;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+      overflow: hidden;
+      padding: 1.5em 0;
+      font-family: $space-mono;
+      font-size: 0.85em;
+
+      @media (max-width: $tablet-breakpoint) {
+        display: none;
+      }
+
+      .title {
+        writing-mode: sideways-lr;
+      }
+
+      .number {
+        position: relative;
+        transition: transform 0.2s cubic-bezier(0.65, 0, 0.35, 1);
+      }
+
+      &:hover {
+        .number {
+          transform: scale(3) translate(-0.5em, 0.1em);
+        }
+      }
+    }
+
+    .content {
+      width: calc(100% - $aside-width);
+      float: right;
+      height: 100%;
+      overflow-x: hidden;
+      overflow-y: scroll;
+      padding-top: 7em;
+      padding-right: $aside-width;
+
+      @media (max-width: $tablet-breakpoint) {
+        float: none;
+      }
+
+      h2 {
+        text-transform: uppercase;
+        letter-spacing: -2px;
+      }
     }
   }
 
@@ -101,9 +157,6 @@
     }
   }
 
-  .sidebar {
-  }
-
   @media (max-width: $tablet-breakpoint) {
     display: block;
     height: 100%;
@@ -122,5 +175,277 @@
         width: 100%;
       }
     }
+  }
+}
+
+// pages
+.content.about-me {
+  h2 {
+    border-bottom: 1px solid $mine-shaft;
+    padding-bottom: 0.5em;
+    margin-bottom: 0.5em;
+    margin-left: $small-padding;
+    margin-right: $small-padding;
+  }
+
+  .header {
+    margin-left: $small-padding;
+    margin-right: $small-padding;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2.5em;
+    padding-top: 2em;
+
+    .image-slider {
+      width: 100%;
+      aspect-ratio: 1;
+      border: 1px solid $mine-shaft;
+      position: relative;
+      overflow: hidden;
+      background-color: $mine-shaft;
+
+      .controls {
+        position: absolute;
+        z-index: 1;
+        bottom: 0.5em;
+        right: 0.5em;
+        display: flex;
+        gap: 0.5em;
+
+        button {
+          height: 2.5em;
+          width: 2.5em;
+          background: transparent;
+          outline: none;
+          border: 1px solid $mine-shaft;
+          cursor: pointer;
+          transition: background 0.3s;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+
+          svg {
+            height: 45%;
+            width: auto;
+            path {
+              fill: $mine-shaft;
+              transition: fill 0.3s;
+            }
+          }
+
+          &:hover {
+            background: $mine-shaft;
+            svg {
+              path {
+                fill: $spring-wood;
+              }
+            }
+          }
+        }
+      }
+
+      .container {
+        height: 100%;
+        width: 300%;
+        display: flex;
+        position: relative;
+        left: 0%;
+        transition: left 0.4s cubic-bezier(0.65, 0, 0.35, 1);
+
+        .image {
+          height: 100%;
+          aspect-ratio: 1;
+
+          img {
+            height: 100%;
+            width: 100%;
+            object-fit: contain;
+          }
+        }
+      }
+    }
+
+    .right {
+      h3 {
+        font-family: $space-mono;
+        letter-spacing: -2px;
+        font-size: 1.75em;
+
+        &::after {
+          content: "";
+          display: block;
+          height: 1px;
+          width: 1em;
+          background: #000;
+          margin: 8px 0 0.35em;
+        }
+      }
+
+      .desc {
+        font-family: $space-mono;
+        font-size: 0.8em;
+        border-bottom: 1px solid $mine-shaft;
+        padding-bottom: 1.5em;
+        margin-bottom: 1.5em;
+      }
+
+      .body {
+        font-size: 1.1em;
+        line-height: 1.5;
+      }
+
+      .cta {
+        padding-top: 2em;
+
+        a {
+          font-size: 0.8em;
+          font-weight: 500;
+          text-transform: uppercase;
+          background: $mine-shaft;
+          color: $white;
+          text-decoration: none;
+          padding: 0.6em 2em;
+          border-radius: 10000px;
+
+          svg {
+            display: inline-block;
+            vertical-align: middle;
+            height: 1.2em;
+            width: auto;
+            margin-left: 0.15em;
+            position: relative;
+            transform: translateY(-0.1em);
+
+            path {
+              fill: $white;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .skills {
+    margin: 0 $small-padding;
+    padding-top: 8em;
+    display: flex;
+    gap: 2.5em;
+
+    .left {
+      background-color: $mine-shaft;
+      color: $white;
+      height: fit-content;
+      width: fit-content;
+      padding: 4em 1em 1em;
+
+      p {
+        font-family: $space-mono;
+        letter-spacing: -1px;
+      }
+    }
+
+    .right {
+      flex: 1;
+      padding-top: 2em;
+
+      .skill {
+        position: relative;
+        display: flex;
+        gap: 1em;
+        justify-content: space-between;
+        padding: 1.5em 0;
+        border-bottom: 1px dotted $mine-shaft;
+        margin-bottom: 1.5em;
+
+        &:last-child {
+          margin-bottom: 0;
+        }
+
+        h4 {
+          font-size: 1.75em;
+          font-family: $space-mono;
+          font-weight: 300;
+        }
+
+        .progress {
+          position: absolute;
+          width: 0%;
+          height: 2px;
+          background-color: $mine-shaft;
+          bottom: -1px;
+        }
+      }
+    }
+  }
+
+  .testimonials {
+    margin-left: $small-padding;
+    margin-right: $small-padding;
+
+    h4 {
+      font-family: $space-mono;
+      font-size: 0.8em;
+      font-weight: 400;
+      border-top: 1px solid $mine-shaft;
+      padding-top: 2em;
+      padding-bottom: 3em;
+    }
+
+    .container {
+      display: flex;
+      flex-wrap: wrap;
+      column-gap: 2em;
+      row-gap: 1.5em;
+
+      .card {
+        background-color: $white;
+        padding: 2em 1.5em;
+        width: 45%;
+
+        .author {
+          font-weight: 600;
+          padding-top: 2em;
+        }
+      }
+    }
+  }
+
+  .clients {
+    margin-top: 4em;
+    margin-left: $small-padding;
+    margin-right: $small-padding;
+
+    h4 {
+      font-family: $space-mono;
+      font-size: 0.8em;
+      font-weight: 400;
+      border-top: 1px solid $mine-shaft;
+      padding-top: 2em;
+      padding-bottom: 3em;
+    }
+
+    .container {
+      height: 100px;
+      border: 1px solid red;
+    }
+  }
+
+  footer {
+    margin-top: 5em;
+    margin-left: $small-padding;
+    margin-right: $small-padding;
+
+    p {
+      font-family: $space-mono;
+      font-size: 0.8em;
+      font-weight: 400;
+      border-top: 1px solid $mine-shaft;
+      padding: 2em 0;
+      text-align: right;
+    }
+  }
+
+  .space {
+    height: 100vh;
   }
 }
