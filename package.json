@@ -4,7 +4,7 @@
     "jquery": "^3.7.1"
   },
   "name": "yoxux.github.io",
-  "description": "- **index.html**: Home page of the site\r - **css/style.css**: Main CSS file for styling\r - **js/script.js**: Main JavaScript file for interactivity\r - **img/**: Folder for images\r - **assets/**: Fonts and icons\r - **docs/**: Folder for downloadable documents",
+  "description": "",
   "version": "1.0.0",
   "main": "index.js",
   "directories": {
