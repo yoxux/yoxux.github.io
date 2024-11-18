@@ -101,6 +101,7 @@ function initPagescripts() {
 
   if (content.hasClass("about-me")) {
     initAboutGsapAnim();
+    initScroller();
   }
 }
 
@@ -251,6 +252,23 @@ function initAboutGsapAnim() {
       },
     })
   );
+}
+
+/**
+ * Infinite image scroller
+ * https://codepen.io/kevinpowell/pen/BavVLra
+ */
+function initScroller() {
+  const scroller = $(".scroller").attr("data-animated", true);
+
+  $(".scroller__inner", scroller)
+    .children()
+    .each(function () {
+      $(this)
+        .clone(true)
+        .attr("aria-hidden", true)
+        .appendTo($(".scroller__inner", scroller));
+    });
 }
 
 /**

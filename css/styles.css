@@ -548,7 +548,47 @@ aside .social a:hover svg path {
 }
 .content.about-me .clients .container {
   height: 100px;
-  border: 1px solid red;
+}
+.content.about-me .clients .container .scroller {
+  max-width: 100%;
+  height: 100%;
+}
+.content.about-me .clients .container .scroller__inner {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1em;
+  height: 100%;
+}
+.content.about-me .clients .container .scroller__inner .item {
+  height: 100%;
+  width: auto;
+}
+.content.about-me .clients .container .scroller[data-animated=true] {
+  overflow: hidden;
+  -webkit-mask: linear-gradient(90deg, transparent, white 20%, white 80%, transparent);
+  mask: linear-gradient(90deg, transparent, white 20%, white 80%, transparent);
+}
+.content.about-me .clients .container .scroller[data-animated=true] .scroller__inner {
+  width: max-content;
+  flex-wrap: nowrap;
+  animation: scroll var(--_animation-duration, 40s) var(--_animation-direction, forwards) linear infinite;
+}
+.content.about-me .clients .container .scroller[data-direction=right] {
+  --_animation-direction: reverse;
+}
+.content.about-me .clients .container .scroller[data-direction=left] {
+  --_animation-direction: forwards;
+}
+.content.about-me .clients .container .scroller[data-speed=fast] {
+  --_animation-duration: 20s;
+}
+.content.about-me .clients .container .scroller[data-speed=slow] {
+  --_animation-duration: 60s;
+}
+@keyframes scroll {
+  to {
+    transform: translate(calc(-50% - 0.5rem));
+  }
 }
 .content.about-me footer {
   margin-top: 5em;
