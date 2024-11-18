@@ -13,10 +13,12 @@ $small-breakpoint: 480px;
   --white-80: rgba(255, 255, 255, 0.8);
 
   --container-padding: 70px;
+  --small-padding: 20px;
 
   @media (max-width: $tablet-breakpoint) {
     --mobile-nav-width: 200px;
     --container-padding: 60px;
+    --small-padding: 0px;
   }
 
   @media (max-width: $mobile-breakpoint) {
@@ -39,3 +41,4 @@ $poppins: "Poppins", sans-serif;
 $space-mono: "Space Mono", monospace;
 
 $container-padding: var(--container-padding);
+$small-padding: var(--small-padding);

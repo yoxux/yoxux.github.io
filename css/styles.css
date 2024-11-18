@@ -7,11 +7,13 @@
   --white: rgba(255, 255, 255, 1);
   --white-80: rgba(255, 255, 255, 0.8);
   --container-padding: 70px;
+  --small-padding: 20px;
 }
 @media (max-width: 960px) {
   :root {
     --mobile-nav-width: 200px;
     --container-padding: 60px;
+    --small-padding: 0px;
   }
 }
 @media (max-width: 767px) {
@@ -197,6 +199,55 @@ aside .social a:hover svg path {
   flex-grow: 1;
   cursor: default;
 }
+.page-content .page.current .sidebar .number {
+  transform: none !important;
+}
+.page-content .page .sidebar {
+  width: var(--aside-width);
+  height: 100%;
+  float: left;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  overflow: hidden;
+  padding: 1.5em 0;
+  font-family: "Space Mono", monospace;
+  font-size: 0.85em;
+}
+@media (max-width: 960px) {
+  .page-content .page .sidebar {
+    display: none;
+  }
+}
+.page-content .page .sidebar .title {
+  writing-mode: sideways-lr;
+}
+.page-content .page .sidebar .number {
+  position: relative;
+  transition: transform 0.2s cubic-bezier(0.65, 0, 0.35, 1);
+}
+.page-content .page .sidebar:hover .number {
+  transform: scale(3) translate(-0.5em, 0.1em);
+}
+.page-content .page .content {
+  width: calc(100% - var(--aside-width));
+  float: right;
+  height: 100%;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  padding-top: 7em;
+  padding-right: var(--aside-width);
+}
+@media (max-width: 960px) {
+  .page-content .page .content {
+    float: none;
+  }
+}
+.page-content .page .content h2 {
+  text-transform: uppercase;
+  letter-spacing: -2px;
+}
 .page-content section.page:first-of-type {
   border-left-color: var(--mine-shaft-0);
 }
@@ -285,6 +336,235 @@ aside .social a:hover svg path {
   .page-content .page.header {
     width: 100%;
   }
+}
+
+.content.about-me h2 {
+  border-bottom: 1px solid var(--mine-shaft);
+  padding-bottom: 0.5em;
+  margin-bottom: 0.5em;
+  margin-left: var(--small-padding);
+  margin-right: var(--small-padding);
+}
+.content.about-me .header {
+  margin-left: var(--small-padding);
+  margin-right: var(--small-padding);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2.5em;
+  padding-top: 2em;
+}
+.content.about-me .header .image-slider {
+  width: 100%;
+  aspect-ratio: 1;
+  border: 1px solid var(--mine-shaft);
+  position: relative;
+  overflow: hidden;
+  background-color: var(--mine-shaft);
+}
+.content.about-me .header .image-slider .controls {
+  position: absolute;
+  z-index: 1;
+  bottom: 0.5em;
+  right: 0.5em;
+  display: flex;
+  gap: 0.5em;
+}
+.content.about-me .header .image-slider .controls button {
+  height: 2.5em;
+  width: 2.5em;
+  background: transparent;
+  outline: none;
+  border: 1px solid var(--mine-shaft);
+  cursor: pointer;
+  transition: background 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.content.about-me .header .image-slider .controls button svg {
+  height: 45%;
+  width: auto;
+}
+.content.about-me .header .image-slider .controls button svg path {
+  fill: var(--mine-shaft);
+  transition: fill 0.3s;
+}
+.content.about-me .header .image-slider .controls button:hover {
+  background: var(--mine-shaft);
+}
+.content.about-me .header .image-slider .controls button:hover svg path {
+  fill: var(--spring-wood);
+}
+.content.about-me .header .image-slider .container {
+  height: 100%;
+  width: 300%;
+  display: flex;
+  position: relative;
+  left: 0%;
+  transition: left 0.4s cubic-bezier(0.65, 0, 0.35, 1);
+}
+.content.about-me .header .image-slider .container .image {
+  height: 100%;
+  aspect-ratio: 1;
+}
+.content.about-me .header .image-slider .container .image img {
+  height: 100%;
+  width: 100%;
+  object-fit: contain;
+}
+.content.about-me .header .right h3 {
+  font-family: "Space Mono", monospace;
+  letter-spacing: -2px;
+  font-size: 1.75em;
+}
+.content.about-me .header .right h3::after {
+  content: "";
+  display: block;
+  height: 1px;
+  width: 1em;
+  background: #000;
+  margin: 8px 0 0.35em;
+}
+.content.about-me .header .right .desc {
+  font-family: "Space Mono", monospace;
+  font-size: 0.8em;
+  border-bottom: 1px solid var(--mine-shaft);
+  padding-bottom: 1.5em;
+  margin-bottom: 1.5em;
+}
+.content.about-me .header .right .body {
+  font-size: 1.1em;
+  line-height: 1.5;
+}
+.content.about-me .header .right .cta {
+  padding-top: 2em;
+}
+.content.about-me .header .right .cta a {
+  font-size: 0.8em;
+  font-weight: 500;
+  text-transform: uppercase;
+  background: var(--mine-shaft);
+  color: var(--white);
+  text-decoration: none;
+  padding: 0.6em 2em;
+  border-radius: 10000px;
+}
+.content.about-me .header .right .cta a svg {
+  display: inline-block;
+  vertical-align: middle;
+  height: 1.2em;
+  width: auto;
+  margin-left: 0.15em;
+  position: relative;
+  transform: translateY(-0.1em);
+}
+.content.about-me .header .right .cta a svg path {
+  fill: var(--white);
+}
+.content.about-me .skills {
+  margin: 0 var(--small-padding);
+  padding-top: 8em;
+  display: flex;
+  gap: 2.5em;
+}
+.content.about-me .skills .left {
+  background-color: var(--mine-shaft);
+  color: var(--white);
+  height: fit-content;
+  width: fit-content;
+  padding: 4em 1em 1em;
+}
+.content.about-me .skills .left p {
+  font-family: "Space Mono", monospace;
+  letter-spacing: -1px;
+}
+.content.about-me .skills .right {
+  flex: 1;
+  padding-top: 2em;
+}
+.content.about-me .skills .right .skill {
+  position: relative;
+  display: flex;
+  gap: 1em;
+  justify-content: space-between;
+  padding: 1.5em 0;
+  border-bottom: 1px dotted var(--mine-shaft);
+  margin-bottom: 1.5em;
+}
+.content.about-me .skills .right .skill:last-child {
+  margin-bottom: 0;
+}
+.content.about-me .skills .right .skill h4 {
+  font-size: 1.75em;
+  font-family: "Space Mono", monospace;
+  font-weight: 300;
+}
+.content.about-me .skills .right .skill .progress {
+  position: absolute;
+  width: 0%;
+  height: 2px;
+  background-color: var(--mine-shaft);
+  bottom: -1px;
+}
+.content.about-me .testimonials {
+  margin-left: var(--small-padding);
+  margin-right: var(--small-padding);
+}
+.content.about-me .testimonials h4 {
+  font-family: "Space Mono", monospace;
+  font-size: 0.8em;
+  font-weight: 400;
+  border-top: 1px solid var(--mine-shaft);
+  padding-top: 2em;
+  padding-bottom: 3em;
+}
+.content.about-me .testimonials .container {
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: 2em;
+  row-gap: 1.5em;
+}
+.content.about-me .testimonials .container .card {
+  background-color: var(--white);
+  padding: 2em 1.5em;
+  width: 45%;
+}
+.content.about-me .testimonials .container .card .author {
+  font-weight: 600;
+  padding-top: 2em;
+}
+.content.about-me .clients {
+  margin-top: 4em;
+  margin-left: var(--small-padding);
+  margin-right: var(--small-padding);
+}
+.content.about-me .clients h4 {
+  font-family: "Space Mono", monospace;
+  font-size: 0.8em;
+  font-weight: 400;
+  border-top: 1px solid var(--mine-shaft);
+  padding-top: 2em;
+  padding-bottom: 3em;
+}
+.content.about-me .clients .container {
+  height: 100px;
+  border: 1px solid red;
+}
+.content.about-me footer {
+  margin-top: 5em;
+  margin-left: var(--small-padding);
+  margin-right: var(--small-padding);
+}
+.content.about-me footer p {
+  font-family: "Space Mono", monospace;
+  font-size: 0.8em;
+  font-weight: 400;
+  border-top: 1px solid var(--mine-shaft);
+  padding: 2em 0;
+  text-align: right;
+}
+.content.about-me .space {
+  height: 100vh;
 }
 
 /*# sourceMappingURL=styles.css.map */
