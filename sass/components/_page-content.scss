@@ -427,6 +427,10 @@
         padding: 2em 1.5em;
         width: 45%;
 
+        @media (max-width: $mobile-breakpoint) {
+          width: 95%;
+        }
+
         .author {
           font-weight: 600;
           padding-top: 2em;

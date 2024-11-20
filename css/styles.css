@@ -555,6 +555,11 @@ aside .social a:hover svg path {
   padding: 2em 1.5em;
   width: 45%;
 }
+@media (max-width: 767px) {
+  .content.about-me .testimonials .container .card {
+    width: 95%;
+  }
+}
 .content.about-me .testimonials .container .card .author {
   font-weight: 600;
   padding-top: 2em;
