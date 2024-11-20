@@ -191,6 +191,11 @@ aside .social a:hover svg path {
   cursor: pointer;
   transition: flex-grow 0.6s cubic-bezier(0.65, 0, 0.35, 1), border-left-color 0s 0.5s;
 }
+@media (max-width: 960px) {
+  .page-content .page {
+    border-left: 0;
+  }
+}
 .page-content .page.header {
   width: 0;
   border-left: 0;
@@ -242,6 +247,9 @@ aside .social a:hover svg path {
 @media (max-width: 960px) {
   .page-content .page .content {
     float: none;
+    padding: 0 var(--container-padding);
+    width: 100%;
+    overflow: unset;
   }
 }
 .page-content .page .content h2 {
@@ -352,6 +360,11 @@ aside .social a:hover svg path {
   grid-template-columns: 1fr 1fr;
   gap: 2.5em;
   padding-top: 2em;
+}
+@media (max-width: 767px) {
+  .content.about-me .header {
+    grid-template-columns: 1fr;
+  }
 }
 .content.about-me .header .image-slider {
   width: 100%;
@@ -467,6 +480,13 @@ aside .social a:hover svg path {
   display: flex;
   gap: 2.5em;
 }
+@media (max-width: 767px) {
+  .content.about-me .skills {
+    flex-direction: column;
+    gap: 1em;
+    padding-top: 4em;
+  }
+}
 .content.about-me .skills .left {
   background-color: var(--mine-shaft);
   color: var(--white);
@@ -481,6 +501,12 @@ aside .social a:hover svg path {
 .content.about-me .skills .right {
   flex: 1;
   padding-top: 2em;
+}
+@media (max-width: 767px) {
+  .content.about-me .skills .right {
+    padding-top: 0;
+    padding-bottom: 4em;
+  }
 }
 .content.about-me .skills .right .skill {
   position: relative;
@@ -594,6 +620,11 @@ aside .social a:hover svg path {
   margin-top: 5em;
   margin-left: var(--small-padding);
   margin-right: var(--small-padding);
+}
+@media (max-width: 960px) {
+  .content.about-me footer {
+    display: none;
+  }
 }
 .content.about-me footer p {
   font-family: "Space Mono", monospace;
